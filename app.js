@@ -20,7 +20,9 @@ app.use('/graphql', graphqlHttp({
 
 //Set up default mongoose connection
 var mongoDB = 'mongodb://localhost/eventBooking';
-mongoose.connect(mongoDB, { useNewUrlParser: true });
+mongoose.connect(mongoDB, {
+    useNewUrlParser: true
+});
 
 //Get the default connection
 var db = mongoose.connection;
@@ -29,8 +31,8 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //perform db function
-db.once('open', function() {
-  // we're connected!
+db.once('open', function () {
+    // we're connected!
     console.log('connected');
 });
 
