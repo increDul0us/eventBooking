@@ -2,7 +2,10 @@
   "name": "graphql-react-event-booking",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "engines": {
+    "node": "11.9.0"
+  },
+  "main": "app.js",
   "scripts": {
     "frontend-install": "npm install --prefix frontend",
     "start": "node app.js",
@@ -11,7 +14,7 @@
     "dev": "concurrently \"npm run server\" \"npm run frontend\"",
     "heroku-postbuild": "echo Skip builds on Heroku"
   },
-  "author": "",
+  "author": "incredulous",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
