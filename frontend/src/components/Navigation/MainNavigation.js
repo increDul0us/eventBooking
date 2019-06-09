@@ -10,7 +10,9 @@ const mainNavigation = props => (
       return (
         <header className="main-navigation">
           <div className="main-navigation__logo">
-            <h1>EasyEvent</h1>
+            <a href="https://github.com/incredul0us" target="blank" >
+              <h1>IncredulousEvents</h1>
+            </a>
           </div>
           <nav className="main-navigation__items">
             <ul>
@@ -40,4 +42,8 @@ const mainNavigation = props => (
   </AuthContext.Consumer>
 );
 
+<<<<<<< HEAD
 export default mainNavigation;
+=======
+export default mainNavigation;
+>>>>>>> complete app

@@ -1,50 +1,56 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const graphqlHttp = require('express-graphql');
-const mongoose = require('mongoose');
+const express = require('express')
+const bodyParser = require('body-parser')
+const graphqlHttp = require('express-graphql')
+const mongoose = require('mongoose')
+const path = require('path')
 
-//import graphql datas
-const graphQlSchema = require('./graphql/schema/index');
-const graphQlResolver = require('./graphql/resolver/index');
-const isAuth = require('./middleware/is-auth');
+const graphQlSchema = require('./graphql/schema/index')
+const graphQlResolvers = require('./graphql/resolvers/index')
+const isAuth = require('./middleware/is-auth')
 
-const app = express();
+const app = express()
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
   if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
+    return res.sendStatus(200)
   }
-  next();
-});
+  next()
+})
 
-app.use('/graphql', graphqlHttp({
+app.use(isAuth)
+
+app.use(
+  '/graphql',
+  graphqlHttp({
     schema: graphQlSchema,
-    rootValue: graphQlResolver,
+    rootValue: graphQlResolvers,
     graphiql: true
-}));
+  })
+)
 
+mongoose
+  .connect(
+    `mongodb+srv://incredulous:incredulous@cluster0-jz2yt.mongodb.net/test?retryWrites=true&w=majority`
+  )
+  .then(() => {
+    console.log('MongoDB Connected')
+  })
+  .catch(err => {
+    console.log(err)
+  })
 
-//Set up default mongoose connection
-var mongoDB = 'mongodb://localhost/eventBooking';
-mongoose.connect(mongoDB, {
-    useNewUrlParser: true
-});
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'))
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  })
+}
 
-//Get the default connection
-var db = mongoose.connection;
-
-//Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-//perform db function
-db.once('open', function () {
-    // we're connected!
-    console.log('connected');
-});
-
-app.listen(8000);
+app.listen(process.env.PORT || 8000, function () {
+  console.log('Server is running on Port:  %d in %s mode', this.address().port, app.settings.env)
+})

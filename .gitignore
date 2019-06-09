@@ -1,1 +1,6 @@
 node_modules
+<<<<<<< HEAD
+=======
+.vscode
+.DS_Store
+>>>>>>> complete app
