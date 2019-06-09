@@ -15,3 +15,9 @@ Run the server
 ```sh
 npm start
 ```
+
+Sample Account:
+```sh
+Email: test@gmail.com
+Password: test
+```
