@@ -10,9 +10,7 @@ const mainNavigation = props => (
       return (
         <header className="main-navigation">
           <div className="main-navigation__logo">
-            <a href="https://github.com/incredul0us" target="blank" >
               <h1>IncredulousEvents</h1>
-            </a>
           </div>
           <nav className="main-navigation__items">
             <ul>

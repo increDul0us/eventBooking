@@ -142,12 +142,14 @@ class EventsPage extends Component {
       }
     })
       .then(res => {
+        console.log("connected to the backend")
         if (res.status !== 200 && res.status !== 201) {
           throw new Error('Failed!');
         }
         return res.json();
       })
       .then(resData => {
+        console.log("connected to the backend")
         const events = resData.data.events;
         if (this.isActive) {
           this.setState({ events: events, isLoading: false });
