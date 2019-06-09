@@ -135,9 +135,9 @@ class EventsPage extends Component {
         `
     };
 
-    axios('/graphql', {
+    axios({ url: '/graphql/', 
       method: 'POST',
-      data: (requestBody),
+      data: requestBody,
       headers: {
         'Content-Type': 'application/json'
       }
