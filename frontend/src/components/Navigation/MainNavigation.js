@@ -42,8 +42,4 @@ const mainNavigation = props => (
   </AuthContext.Consumer>
 );
 
-<<<<<<< HEAD
 export default mainNavigation;
-=======
-export default mainNavigation;
->>>>>>> complete app
