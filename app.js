@@ -46,6 +46,16 @@ mongoose
     console.log(err)
   })
 
+// var mongoDB = 'mongodb://localhost/eventBooking'
+// mongoose.connect(mongoDB, {
+//   useNewUrlParser: true
+// })
+// var db = mongoose.connection
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+// db.once('open', function () {
+//   console.log('connected')
+// })
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'))
   app.get('*', (req, res) => {

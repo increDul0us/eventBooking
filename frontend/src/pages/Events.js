@@ -5,7 +5,6 @@ import Backdrop from '../components/Backdrop/Backdrop';
 import EventList from '../components/Events/EventList/EventList';
 import Spinner from '../components/Spinner/Spinner';
 import AuthContext from '../context/auth-context';
-import axios from 'axios';
 import './Events.css';
 
 class EventsPage extends Component {
@@ -76,7 +75,7 @@ class EventsPage extends Component {
 
     const token = this.context.token;
 
-    fetch('http://localhost:8000/graphql', {
+    fetch('/graphql', {
       method: 'POST',
       body: JSON.stringify(requestBody),
       headers: {
@@ -135,20 +134,23 @@ class EventsPage extends Component {
         `
     };
 
-    axios({ url: '/graphql/', 
+    fetch('/graphql', {
       method: 'POST',
-      data: requestBody,
+      body: JSON.stringify(requestBody),
       headers: {
         'Content-Type': 'application/json'
       }
     })
       .then(res => {
-        const events = res.data.data.events;
-        if (this.isActive) {
-          this.setState({ events: events, isLoading: false });
-        }
         if (res.status !== 200 && res.status !== 201) {
           throw new Error('Failed!');
+        }
+        return res.json();
+      })
+      .then(resData => {
+        const events = resData.data.events;
+        if (this.isActive) {
+          this.setState({ events: events, isLoading: false });
         }
       })
       .catch(err => {
@@ -187,7 +189,7 @@ class EventsPage extends Component {
         }
     };
 
-    fetch('http://localhost:8000/graphql', {
+    fetch('/graphql', {
       method: 'POST',
       body: JSON.stringify(requestBody),
       headers: {
