@@ -1,9 +1,9 @@
 
 ```sh
-A node React project developed for creating and booking events.
+A node React project developed for creating and puchasing movie ticket.
 ```
 ```sh
-It is hosted on https://incredulousevents.herokuapp.com/
+It is hosted on https://movietick.herokuapp.com/
 ```
 
 Install all dependencies
