@@ -40,14 +40,14 @@ class App extends Component {
               <Switch>
                 {this.state.token && <Redirect from="/" to="/events" exact />}
                 {this.state.token && (
-                  <Redirect from="/auth" to="/events" exact />
+                  <Redirect from="/auth" to="/shows" exact />
                 )}
                 {!this.state.token && (
                   <Route path="/auth" component={AuthPage} />
                 )}
-                <Route path="/events" component={EventsPage} />
+                <Route path="/shows" component={EventsPage} />
                 {this.state.token && (
-                  <Route path="/bookings" component={BookingsPage} />
+                  <Route path="/purchases" component={BookingsPage} />
                 )}
                 {!this.state.token && <Redirect to="/auth" exact />}
               </Switch>
