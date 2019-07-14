@@ -222,7 +222,7 @@ class EventsPage extends Component {
         {(this.state.creating || this.state.selectedEvent) && <Backdrop />}
         {this.state.creating && (
           <Modal
-            title="Add Movie Show"
+            title="Add Event"
             canCancel
             canConfirm
             onCancel={this.modalCancelHandler}
@@ -260,7 +260,7 @@ class EventsPage extends Component {
             canConfirm
             onCancel={this.modalCancelHandler}
             onConfirm={this.bookEventHandler}
-            confirmText={this.context.token ? 'Purchase' : 'Confirm'}
+            confirmText={this.context.token ? 'Book' : 'Confirm'}
           >
             <h1>{this.state.selectedEvent.title}</h1>
             <h2>
@@ -272,9 +272,9 @@ class EventsPage extends Component {
         )}
         {this.context.token && (
           <div className="events-control">
-            <p>Share your own Show!</p>
+            <p>Share your own Events!</p>
             <button className="btn" onClick={this.startCreateEventHandler}>
-              Create Movie Show
+              Create Event
             </button>
           </div>
         )}

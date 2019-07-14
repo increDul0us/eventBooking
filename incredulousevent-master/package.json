@@ -26,8 +26,7 @@
     "express-graphql": "^0.7.1",
     "graphql": "^14.0.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.5.14",
-    "paypal-rest-sdk": "^1.8.1"
+    "mongoose": "^5.5.14"
   },
   "devDependencies": {
     "nodemon": "^1.18.7"
